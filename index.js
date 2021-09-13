@@ -67,13 +67,6 @@ function cambiarColor(){
     }
 }
 
-//Función para modificar el array casillero.
-function cambiarArry(){
-    if(casillero[identificador][j]!="ROJO" && casillero[indexCasillero][indexCasilla] !="AMARILLO"){
-        casillero[indexCasillero][indexCasilla] = turno
-    }
-}
-
 //Función para modificar el elemento turno actual.
 function cambiarTurno(){
     turnoHTML = document.getElementById("turnoActualP")
@@ -183,7 +176,6 @@ function jugar(){
     document.getElementById("textAmarillo").value =""
     displayTablero();
 }
-
 
 //función para reiniciar.
 function reiniciar(){
