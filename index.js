@@ -10,7 +10,6 @@ let turno = "ROJO";
 
 let container = document.getElementById("container")
 let containerInicial = document.getElementById("containerInicial")
-let containerSalir = document.getElementById("containerSalir")
 let containerFinal = document.getElementById("containerFinalPartida")
 let nombre1 = "ROJO"
 let nombre2 = "AMARILLO"
@@ -40,7 +39,6 @@ function setIndex(identificador){
         indexCasilla = identificador
     }
 }
-
 
 function checkCasilla(identificador){ 
     setIndex(identificador);
@@ -99,6 +97,7 @@ function checkLine(){
     }
 }
 
+//Función para comprobar si tenemos 4 en columna
 function checkColumn(){
     for(let i = 0; i<casillero.length; i++){
         for(let j = 0; j<casillero[i].length;j++){
@@ -117,14 +116,14 @@ function checkColumn(){
 function checkDiagonal(){
     for(let i = 0; i<casillero.length; i++){
         for(let j = 0; j<casillero[i].length;j++){
-            //Para diagonal a la derecha
+            //Para diagonal a la derecha /
             if(i!=5 && i!= 4 && i!=3 && j!=0 && j!=1 && j!=2){
                 if(casillero[i][j] ==="ROJO"&&casillero[i+1][j-1] ==="ROJO"&&casillero[i+2][j-2] ==="ROJO"&&casillero[i+3][j-3] ==="ROJO"){
                     finalPartida();
                 }else if(casillero[i][j] ==="AMARILLO"&&casillero[i+1][j-1] ==="AMARILLO"&&casillero[i+2][j-2] ==="AMARILLO"&&casillero[i+3][j-3] ==="AMARILLO"){
                     finalPartida(); 
                 }
-            //Para diagonal a la izquierda
+            //Para diagonal a la izquierda \
             } else if(i!=0 && i!= 1 && i!=2 && j!=0 && j!=1 && j!=2){
                 if(casillero[i][j] ==="ROJO"&&casillero[i-1][j-1] ==="ROJO"&&casillero[i-2][j-2] ==="ROJO"&&casillero[i-3][j-3] ==="ROJO"){
                     finalPartida();
@@ -165,7 +164,6 @@ function jugar(){
     document.getElementById("textAmarillo").value =""
     displayTablero();
 }
-
 
 //función para reiniciar.
 function reiniciar(){
