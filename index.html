@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta4</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    
+</head>
+<body> 
+    <div id="containerInicial">
+        <div><h1 id="Conecta4">- Conecta4 -</h1></div>
+        <div><h2>Nombre de los Jugadores:</h2></div>
+        <div id="nombres">
+            <div id="nombreRojo">
+                <div class="nombreJugador"><h4>Jugador Rojo:</h4></div> 
+                <div><input type="text" id="textRojo" placeholder="Rojo" autocomplete="off"></div>
+            </div>
+            <div id="nombreAmarillo">
+                <div class="nombreJugador"><h4>Jugador Amarillo: </h4></div> 
+                <div><input type="text" id="textAmarillo" placeholder="Amarillo" autocomplete="off"></div>
+            </div>
+        </div>
+        <div><input type="button" value="JUGAR" id="botonJugar"class="boton" onclick="jugar()"></div>
+    </div>
+
+    <!--div containerFinalPartida display none, para mostrar cuando haya un ganador-->
+    <div id="containerFinalPartida" class="contenedor">
+        <div id="caja1" class="caja"><h1 id="mensajeGanador">Ha ganado:</h1></div>
+        <div id="caja2" class="caja"><h2 id="ganador" style="font-size: 70px;">ROJO</h2></div>
+        <div id="caja3" class="caja"><h2>¿Queréis volver a jugar?</h2></div>
+        <div id="caja4" class="caja">
+            <input type="button" value="SÍ" id="botonSi"class="boton" onclick="reiniciar(), displayTablero()">
+            <input type="button" value="NO" id="botonNo"class="boton" onclick="salir()">
+        </div>
+    </div> 
+    
+    <!--div container con el tablero + botonera-->
+    <div id="container" class="contenedor">
+        <div id="tablero">
+            <div id="columna0" class="columna" onclick="checkCasilla(0)">
+                <div id="c1" class="casilla"  ></div>
+                <div id="c8" class="casilla"  ></div>
+                <div id="c15" class="casilla" ></div>
+                <div id="c22" class="casilla" ></div>
+                <div id="c29" class="casilla" ></div>
+                <div id="c36" class="casilla" ></div>
+            </div>
+            <div id="columna1" class="columna" onclick="checkCasilla(1)">
+                <div id="c2" class="casilla"  ></div>
+                <div id="c9" class="casilla"  ></div>
+                <div id="c16" class="casilla" ></div>
+                <div id="c23" class="casilla" ></div>
+                <div id="c30" class="casilla" ></div>
+                <div id="c37" class="casilla" ></div>
+            </div>         
+            <div id="columna2" class="columna" onclick="checkCasilla(2)">
+                <div id="c3" class="casilla"  ></div>
+                <div id="c10" class="casilla" ></div>
+                <div id="c17" class="casilla" ></div>
+                <div id="c24" class="casilla" ></div>
+                <div id="c31" class="casilla" ></div>
+                <div id="c38" class="casilla" ></div>
+            </div>
+            <div id="columna3" class="columna" onclick="checkCasilla(3)">
+                <div id="c4" class="casilla"  ></div>
+                <div id="c11" class="casilla" ></div>
+                <div id="c18" class="casilla" ></div>
+                <div id="c25" class="casilla" ></div>
+                <div id="c32" class="casilla" ></div>
+                <div id="c39" class="casilla" ></div>
+            </div>
+            <div id="columna4" class="columna" onclick="checkCasilla(4)">
+                <div id="c5" class="casilla"  ></div>
+                <div id="c12" class="casilla" ></div>
+                <div id="c19" class="casilla" ></div>
+                <div id="c26" class="casilla" ></div>
+                <div id="c33" class="casilla" ></div>
+                <div id="c40" class="casilla" ></div>
+            </div>
+            <div id="columna5" class="columna" onclick="checkCasilla(5)">
+                <div id="c6" class="casilla"  ></div>
+                <div id="c13" class="casilla" ></div>
+                <div id="c20" class="casilla" ></div>
+                <div id="c27" class="casilla" ></div>
+                <div id="c34" class="casilla" ></div>
+                <div id="c41" class="casilla" ></div>
+            </div>
+            <div id="columna6" class="columna" onclick="checkCasilla(6)">
+                <div id="c7" class="casilla"  ></div>
+                <div id="c14" class="casilla" ></div>
+                <div id="c21" class="casilla" ></div>
+                <div id="c28" class="casilla" ></div>
+                <div id="c35" class="casilla" ></div>
+                <div id="c42" class="casilla" ></div>
+            </div>
+        </div>
+
+        <div id="botonera">
+            <div id="turnoActual"><p id="turnoActualP">Comienza ROJO</p></div>
+            <input type="button" id="reiniciar" class= "botonera"value="Reiniciar" onclick="reiniciar()">
+            <input type="button" id="salir" class= "botonera" value="Salir" onclick="salir()">
+        </div>
+    </div>
+    
+</body>
+</html>
+<script src="index.js"></script>

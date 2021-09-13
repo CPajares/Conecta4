@@ -1,0 +1,211 @@
+
+body{
+    margin: 10px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: url("fondoElectrico.jpg") no-repeat center center fixed;
+    background-size:cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; 
+    visibility: hidden;
+    display:none;
+}
+
+    #tablero{
+        border-radius: 5%;
+        border: 4px solid black;
+        border-top: 10px double black;
+        background-color: rgba(94, 94, 250, 0.90);
+        box-shadow: 8px 8px 15px black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 15px;
+        padding: 10px;
+    }
+
+    .columna{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin: 3px;
+    }
+
+    .casilla{
+        border: 3px solid black;
+        border-radius: 50%;
+        width: 10vh;
+        height: 10vh;
+        margin: 5px;
+        background-color:transparent;
+        box-shadow: 5px 5px 5px 2px black;
+    }
+
+    #botonera{
+        border: 2px solid black;
+        box-shadow: 6px 6px 15px black;
+        width: 80vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px;
+        background-color: rgba(94, 94, 250, 0.50);
+        padding: 10px;
+    }
+        #turnoActual{
+            background-color:red;
+            border: 4px solid black;
+            border-radius: 10%;
+            height: 1.8vh;
+            display: flex;
+            align-items: center;
+            padding: 10px;     
+        }
+
+        .botonera{
+                height: 5vh;
+                width: 18vh;
+                padding: px;
+                background-color: rgb(167, 167, 166);
+                border: 5px solid white;
+                border-radius: 10%;
+                cursor: pointer;
+                font-size: 2.2vh;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        input[type=button]:hover{
+            background-color: rgba(237, 253, 165, 0);
+            color: white;
+        }
+
+
+#containerInicial{
+    background-color: rgba(94, 94, 250, 0.80);
+    color: white;
+    font-size: 2.5vh;
+    border: 5px solid white;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 60vh;
+    height: 60vh;
+    justify-content:space-evenly;
+    margin-top: 7%;
+}
+
+    #nombreRojo{
+        display: flex;
+        align-items: center;
+        height: 8vh;
+    }
+
+    #nombreAmarillo{
+        display: flex;
+        align-items: center;
+        height: 8vh;
+    }
+    input[type=text]{
+        margin: 5px;
+    }
+    #textRojo{
+        width: 27vh;
+    }
+    
+    #textRojo:focus{
+        background-color: rgb(255, 103, 103);
+    }
+    #textAmarillo{
+        width: 22vh;
+    }
+    #textAmarillo:focus{
+        background-color:rgb(255, 255, 103);
+    }
+
+    .nombreJugador{
+        height: 50%;
+        display: flex;
+        align-items: center;
+        
+    }
+
+    #botonJugar{
+        width: 20vh;
+    }
+
+#containerFinalPartida{
+    background-image: url("fiesta.webp");
+    background-size:cover;
+    color: white;
+    font-size: 2.5vh;
+    border: 5px solid white;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 60vh;
+    height: 60vh;
+    justify-content: space-around;
+    margin-top: 7%;
+    visibility: hidden;
+    display:none;
+    
+}
+    #ganador{
+        background-color: rgba(255, 255, 255, 0.432);
+        padding: 5px;
+        font-family: 'Brush Script MT', cursive;
+        width: 62.8vh;
+        text-align: center;
+        border: 5px solid white;
+    }
+    #caja4 {
+        display: flex;
+        flex-direction: row;
+        width: 20vh;
+        height: 5vh;
+        margin-bottom: 20px;
+        justify-content: space-around;
+    }
+
+    .boton{
+        height: 5vh;
+        width: 8vh;
+        background-color: rgb(167, 166, 166);
+        border: 5px solid white;
+        border-radius: 10%;
+        cursor: pointer;
+        font-size: 2.2vh;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+#containerSalir{
+    background-color: rgb(94, 94, 250);
+    color: white;
+    font-size: 2.7vh;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 60vh;
+    height: 60vh;
+    justify-content: center;
+    margin-top: 7%;
+    visibility: hidden;
+    display:none;
+}
