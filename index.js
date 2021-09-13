@@ -44,18 +44,10 @@ function setIndex(identificador){
 
 function checkCasilla(identificador){ 
     setIndex(identificador);
-    if(casillero[indexCasillero][indexCasilla] != "ROJO" && casillero[indexCasillero][indexCasilla] != "AMARILLO"){ 
-        if(indexCasillero === 5){     
+    if(casillero[indexCasillero][indexCasilla] != "ROJO" && casillero[indexCasillero][indexCasilla] != "AMARILLO"){   
             cambiarColor();
             casillero[indexCasillero][indexCasilla] = turno //Cambiamos array casillero
-            cambiarTurno();
-        } else if (indexCasillero!=5){
-            if(casillero[indexCasillero+1][indexCasilla]==="ROJO" || casillero[indexCasillero+1][indexCasilla]==="AMARILLO"){
-                cambiarColor();
-                casillero[indexCasillero][indexCasilla] = turno //Cambiamos array casillero
-                cambiarTurno();
-            }
-        }    
+            cambiarTurno();  
     }
     checkEmpate();
     checkLine();
@@ -79,14 +71,6 @@ function cambiarColor(){
     }
 }
 
-
-//Función para modificar el array.
-function cambiarArry(){
-    if(casillero[identificador][j]!="ROJO" && casillero[indexCasillero][indexCasilla] !="AMARILLO"){
-        casillero[indexCasillero][indexCasilla] = turno
-    }
-}
-
 //Función para modificar el elemento turno actual
 function cambiarTurno(){
     turnoHTML = document.getElementById("turnoActualP")
@@ -100,7 +84,6 @@ function cambiarTurno(){
         turnoHTML.textContent = `Turno actual: ${nombre1}`
     }    
 }
-
 
 function checkLine(){
     for(let i = 0; i<casillero.length; i++){
@@ -169,7 +152,7 @@ function checkEmpate(){
         displayFinal();
     }
 }
-
+//Para botón Jugar. Guardar nombres
 function jugar(){
     if(document.getElementById("textRojo").value.length >0){
         nombre1 = document.getElementById("textRojo").value
@@ -205,12 +188,12 @@ function reiniciar(){
         }
     }
 }
-
+//Función para botón salir
 function salir(){
     reiniciar();
     displayInicial();
 }
-
+//función para mostrar pantalla final.
 function finalPartida(){
     document.getElementById("mensajeGanador").textContent = "Ha ganado:"
     if(turno === "ROJO"){
@@ -224,7 +207,7 @@ function finalPartida(){
     displayFinal();
 }
 
-//funciones para mostrar pantallas:
+//funciones para mostrar las diferentes pantallas:
 
 function displayInicial(){
     containerFinal.style.visibility = "hidden"
