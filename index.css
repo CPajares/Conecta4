@@ -6,7 +6,7 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background: url("fondoElectrico.jpg") no-repeat center center fixed;
+    background: url("fondoPatron.jpg");
     background-size:cover;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
@@ -53,9 +53,9 @@ body{
     }
 
     #botonera{
-        border: 2px solid black;
+        border: 4px solid rgb(36, 36, 228);
         box-shadow: 6px 6px 15px black;
-        width: 80vh;
+        width: 93%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -66,7 +66,7 @@ body{
     }
         #turnoActual{
             background-color:red;
-            border: 4px solid black;
+            border: 3px solid rgb(36, 36, 228);
             border-radius: 10%;
             height: 1.8vh;
             display: flex;
@@ -79,23 +79,22 @@ body{
                 width: 18vh;
                 padding: px;
                 background-color: rgb(167, 167, 166);
-                border: 5px solid white;
-                border-radius: 10%;
+                border: 3px solid rgb(36, 36, 228);
                 cursor: pointer;
                 font-size: 2.2vh;
                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
         input[type=button]:hover{
-            background-color: rgba(237, 253, 165, 0);
+            background-color: rgb(36, 36, 228);
             color: white;
         }
 
 
 #containerInicial{
     background-color: rgba(94, 94, 250, 0.80);
-    color: white;
+    color: rgb(36, 36, 228);
     font-size: 2.5vh;
-    border: 5px solid white;
+    border: 5px solid rgb(36, 36, 228);
     border-radius: 3%;
     display: flex;
     flex-direction: column;
@@ -147,11 +146,10 @@ body{
     }
 
 #containerFinalPartida{
-    background-image: url("fiesta.webp");
-    background-size:cover;
-    color: white;
+    background-color: rgba(94, 94, 250, 0.80);
+    color: rgb(36, 36, 228);
     font-size: 2.5vh;
-    border: 5px solid white;
+    border: 5px solid rgb(36, 36, 228);
     border-radius: 3%;
     display: flex;
     flex-direction: column;
@@ -166,13 +164,15 @@ body{
     
 }
     #ganador{
-        background-color: rgba(255, 255, 255, 0.432);
+        background-image: url("fiesta.webp");
         padding: 5px;
+        -webkit-text-stroke: 2px black;
         font-family: 'Brush Script MT', cursive;
         width: 62.8vh;
         text-align: center;
-        border: 5px solid white;
+        border: 5px solid rgb(36, 36, 228);
     }
+    
     #caja4 {
         display: flex;
         flex-direction: row;
@@ -186,8 +186,7 @@ body{
         height: 5vh;
         width: 8vh;
         background-color: rgb(167, 166, 166);
-        border: 5px solid white;
-        border-radius: 10%;
+        border: 2px solid rgb(36, 36, 228);
         cursor: pointer;
         font-size: 2.2vh;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

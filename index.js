@@ -1,50 +1,25 @@
 
-let casillero = 
-[["c1", "c2", "c3", "c4", "c5", "c6", "c7"],
-["c8", "c9", "c10", "c11", "c12", "c13", "c14"],
-["c15", "c16", "c17", "c18", "c19", "c20", "c21"],
-["c22", "c23", "c24", "c25", "c26", "c27", "c28"],
-["c29", "c30", "c31", "c32", "c33", "c34", "c35"],
-["c36", "c37", "c38", "c39", "c40", "c41", "c42"]];
+let casillero = [
+    ["c1", "c2", "c3", "c4", "c5", "c6", "c7"],
+    ["c8", "c9", "c10", "c11", "c12", "c13", "c14"],
+    ["c15", "c16", "c17", "c18", "c19", "c20", "c21"],
+    ["c22", "c23", "c24", "c25", "c26", "c27", "c28"],
+    ["c29", "c30", "c31", "c32", "c33", "c34", "c35"],
+    ["c36", "c37", "c38", "c39", "c40", "c41", "c42"]
+];
 let turno = "ROJO";
-
 let container = document.getElementById("container")
 let containerInicial = document.getElementById("containerInicial")
 let containerFinal = document.getElementById("containerFinalPartida")
 let nombre1 = "ROJO"
 let nombre2 = "AMARILLO"
-let indexCasillero = null
-let indexCasilla = null
+let indexFila = null
+let indexColumna = null
 
-//Funcion para conocer el index de la celda a modificar al pulsar en la fila.
-
-function setIndex(identificador){ 
-    if(casillero[5][identificador] !="ROJO" && casillero[5][identificador] !="AMARILLO"){
-        indexCasillero = 5
-        indexCasilla = identificador
-    } else if(casillero[4][identificador] !="ROJO" && casillero[4][identificador] !="AMARILLO"){
-        indexCasillero = 4
-        indexCasilla = identificador
-    } else if(casillero[3][identificador] !="ROJO" && casillero[3][identificador] !="AMARILLO"){
-        indexCasillero = 3
-        indexCasilla = identificador
-    } else if(casillero[2][identificador] !="ROJO" && casillero[2][identificador] !="AMARILLO"){
-        indexCasillero = 2
-        indexCasilla = identificador
-    } else if(casillero[1][identificador] !="ROJO" && casillero[1][identificador] !="AMARILLO"){
-        indexCasillero = 1
-        indexCasilla = identificador
-    } else if(casillero[0][identificador] !="ROJO" && casillero[0][identificador] !="AMARILLO"){
-        indexCasillero = 0
-        indexCasilla = identificador
-    }
-}
-
-function checkCasilla(identificador){ 
-    setIndex(identificador);
-    if(casillero[indexCasillero][indexCasilla] != "ROJO" && casillero[indexCasillero][indexCasilla] != "AMARILLO"){   
-            cambiarColor();
-            casillero[indexCasillero][indexCasilla] = turno //Cambiamos array casillero
+function checkCasilla(idColumna){ 
+    setIndex(idColumna);
+    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
+            asiganarColor();
             cambiarTurno();  
     }
     checkEmpate();
@@ -53,9 +28,33 @@ function checkCasilla(identificador){
     checkDiagonal(); 
 }
 
+//Funcion para conocer el index de la celda a modificar al pulsar en la fila.
+
+function setIndex(idColumna){ 
+    if(casillero[5][idColumna] !="ROJO" && casillero[5][idColumna] !="AMARILLO"){
+        indexFila = 5
+        indexColumna = idColumna
+    } else if(casillero[4][idColumna] !="ROJO" && casillero[4][idColumna] !="AMARILLO"){
+        indexFila = 4
+        indexColumna = idColumna
+    } else if(casillero[3][idColumna] !="ROJO" && casillero[3][idColumna] !="AMARILLO"){
+        indexFila = 3
+        indexColumna = idColumna
+    } else if(casillero[2][idColumna] !="ROJO" && casillero[2][idColumna] !="AMARILLO"){
+        indexFila = 2
+        indexColumna = idColumna
+    } else if(casillero[1][idColumna] !="ROJO" && casillero[1][idColumna] !="AMARILLO"){
+        indexFila = 1
+        indexColumna = idColumna
+    } else if(casillero[0][idColumna] !="ROJO" && casillero[0][idColumna] !="AMARILLO"){
+        indexFila = 0
+        indexColumna = idColumna
+    }
+}
+
 //Función para modificar el color de la casilla
-function cambiarColor(){
-    let casilla = casillero[indexCasillero][indexCasilla];
+function asiganarColor(){
+    let casilla = casillero[indexFila][indexColumna];
     let casillaHTML = document.getElementById(casilla)
     if(casillaHTML.style.backgroundColor === ""){ 
         if(turno ==="ROJO"){
@@ -67,6 +66,7 @@ function cambiarColor(){
          casillaHTML.style.boxShadow = "1px 1px 1px 1px black"
         }
     }
+    casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
 }
 
 //Función para modificar el elemento turno actual
@@ -75,21 +75,19 @@ function cambiarTurno(){
     if(turno === "ROJO"){
         turno = "AMARILLO"
         document.getElementById("turnoActual").style.backgroundColor ="yellow"
-        turnoHTML.textContent = `Turno actual: ${nombre2}`
+        turnoHTML.textContent = `${nombre2}`
     } else if (turno === "AMARILLO"){
         turno = "ROJO"
         document.getElementById("turnoActual").style.backgroundColor ="red"
-        turnoHTML.textContent = `Turno actual: ${nombre1}`
+        turnoHTML.textContent = `${nombre1}`
     }    
 }
 
 function checkLine(){
     for(let i = 0; i<casillero.length; i++){
         for(let j = 0; j<casillero[i].length;j++){
-            if(i === indexCasillero){
-                if(casillero[i][j] ==="ROJO"&&casillero[i][j+1] ==="ROJO"&&casillero[i][j+2] ==="ROJO"&&casillero[i][j+3] ==="ROJO"){
-                    finalPartida();
-                } else if(casillero[i][j] ==="AMARILLO"&&casillero[i][j+1] ==="AMARILLO"&&casillero[i][j+2] ==="AMARILLO"&&casillero[i][j+3] ==="AMARILLO"){
+            if(i === indexFila){
+                if(casillero[i][j] === casillero[i][j+1] && casillero[i][j+1] === casillero[i][j+2] && casillero[i][j+2] === casillero[i][j+3]){
                     finalPartida();
                 }
             }
@@ -101,12 +99,10 @@ function checkLine(){
 function checkColumn(){
     for(let i = 0; i<casillero.length; i++){
         for(let j = 0; j<casillero[i].length;j++){
-            if(i === indexCasillero && j === indexCasilla && indexCasillero<3){
-                if(casillero[i][j] ==="ROJO"&&casillero[i+1][j] ==="ROJO"&&casillero[i+2][j] ==="ROJO"&&casillero[i+3][j] ==="ROJO"){
+            if(i === indexFila && j === indexColumna && indexFila<3){
+                if(casillero[i][j] === casillero[i+1][j] && casillero[i+1][j] === casillero[i+2][j] && casillero[i+2][j] === casillero[i+3][j]){
                     finalPartida();
-                } else if(casillero[i][j] ==="AMARILLO"&&casillero[i+1][j] ==="AMARILLO"&&casillero[i+2][j] ==="AMARILLO"&&casillero[i+3][j] ==="AMARILLO"){
-                    finalPartida();
-                }
+                } 
             }
         }
     }
@@ -118,18 +114,14 @@ function checkDiagonal(){
         for(let j = 0; j<casillero[i].length;j++){
             //Para diagonal a la derecha /
             if(i!=5 && i!= 4 && i!=3 && j!=0 && j!=1 && j!=2){
-                if(casillero[i][j] ==="ROJO"&&casillero[i+1][j-1] ==="ROJO"&&casillero[i+2][j-2] ==="ROJO"&&casillero[i+3][j-3] ==="ROJO"){
+                if(casillero[i][j] === casillero[i+1][j-1] && casillero[i+1][j-1] === casillero[i+2][j-2] && casillero[i+2][j-2] === casillero[i+3][j-3]){
                     finalPartida();
-                }else if(casillero[i][j] ==="AMARILLO"&&casillero[i+1][j-1] ==="AMARILLO"&&casillero[i+2][j-2] ==="AMARILLO"&&casillero[i+3][j-3] ==="AMARILLO"){
-                    finalPartida(); 
                 }
             //Para diagonal a la izquierda \
             } else if(i!=0 && i!= 1 && i!=2 && j!=0 && j!=1 && j!=2){
-                if(casillero[i][j] ==="ROJO"&&casillero[i-1][j-1] ==="ROJO"&&casillero[i-2][j-2] ==="ROJO"&&casillero[i-3][j-3] ==="ROJO"){
+                if(casillero[i][j] === casillero[i-1][j-1] && casillero[i-1][j-1] === casillero[i-2][j-2] && casillero[i-2][j-2] === casillero[i-3][j-3]){
                     finalPartida();
-                } else if (casillero[i][j] ==="AMARILLO"&&casillero[i-1][j-1] ==="AMARILLO"&&casillero[i-2][j-2] ==="AMARILLO"&&casillero[i-3][j-3] ==="AMARILLO"){
-                    finalPartida();
-                }   
+                }  
             }
         }
     }
@@ -159,7 +151,7 @@ function jugar(){
     if(document.getElementById("textAmarillo").value.length>0){
         nombre2 = document.getElementById("textAmarillo").value
     }
-    document.getElementById("turnoActualP").textContent = `Comienza: `+nombre1
+    document.getElementById("turnoActualP").textContent = nombre1
     document.getElementById("textRojo").value = ""
     document.getElementById("textAmarillo").value =""
     displayTablero();
