@@ -218,6 +218,8 @@ function reiniciar(){
 
 //Función para botón salir
 function salir(){
+    nombre1 = "ROJO"
+    nombre2 = "AMARILLO"
     reiniciar();
     displayInicial();
 }
