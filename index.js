@@ -16,8 +16,16 @@ let nombre2 = "AMARILLO"
 let indexFila = null
 let indexColumna = null
 
-//Funcion para conocer el index de la celda a modificar al pulsar en la fila.
 
+//Función que se activa al clickar en una columna y recibe el parametro idColumna, diferente según la columna
+function checkCasilla(idColumna){ 
+    setIndex(idColumna);
+    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
+        efectoCaida(idColumna);   
+    }
+}
+
+//Funcion para conocer el index de la celda a modificar al pulsar en la columna.
 function setIndex(idColumna){ 
     if(casillero[5][idColumna] !="ROJO" && casillero[5][idColumna] !="AMARILLO"){
         indexFila = 5
@@ -40,10 +48,47 @@ function setIndex(idColumna){
     }
 }
 
-function checkCasilla(idColumna){ 
-    setIndex(idColumna);
-    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
-        efectoCaida(idColumna);   
+//Esta función simula la caida de la ficha.
+function efectoCaida(idColumna){
+    let contador = 0;
+    let contador2 = 0;
+    let id = setInterval(cambiarCasillas,10);
+    let id2 = setInterval(cambiarCasillas2,18)
+    
+    let color = "red"
+    if(turno === "AMARILLO"){
+        color="yellow"
+    }
+    //Colorea de rojo o amarillo las casillas de esa columna
+    function cambiarCasillas(){
+        if (indexFila>=0){ 
+            let casillaHTML2 = ""
+                casillaHTML2 = casillero[contador][idColumna]
+                document.getElementById(casillaHTML2).style.backgroundColor = color
+            if (contador === indexFila){
+                clearInterval(id)
+            }
+            contador ++  
+        }
+    }
+    //Quita el color de las casillas de esa columna
+    function cambiarCasillas2(){
+        if (indexFila>=0){
+            let casillaHTML3 = ""
+                casillaHTML3 = casillero[contador2][idColumna]
+                document.getElementById(casillaHTML3).style.backgroundColor = ""
+            if (contador2 === indexFila){
+                asignarColor(); //se asigna color a la casilla
+                casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
+                cambiarTurno();
+                checkEmpate();
+                checkLine();
+                checkColumn();
+                checkDiagonal(); 
+                clearInterval(id2);
+            }
+            contador2 ++
+        }
     }
 }
 
@@ -63,48 +108,6 @@ function asignarColor(){
     }
     casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
 }
-function efectoCaida(idColumna){
-    let contador = 0;
-    let contador2 = 0;
-    let id = setInterval(cambiarCasillas,10);
-    let id2 = setInterval(cambiarCasillas2,18)
-    
-    let color = "red"
-    if(turno === "AMARILLO"){
-        color="yellow"
-    }
-
-    function cambiarCasillas(){
-        if (indexFila>=0){ 
-            let casillaHTML2 = ""
-                casillaHTML2 = casillero[contador][idColumna]
-                document.getElementById(casillaHTML2).style.backgroundColor = color
-            if (contador === indexFila){
-                clearInterval(id)
-            }
-            contador ++  
-        }
-    }
-    function cambiarCasillas2(){
-        if (indexFila>=0){
-            let casillaHTML3 = ""
-                casillaHTML3 = casillero[contador2][idColumna]
-                document.getElementById(casillaHTML3).style.backgroundColor = ""
-            if (contador2 === indexFila){
-                asignarColor();
-                casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
-                cambiarTurno();
-                checkEmpate();
-                checkLine();
-                checkColumn();
-                checkDiagonal(); 
-                clearInterval(id2);
-            }
-            contador2 ++
-        }
-    }
-}
-
 //Función para modificar el elemento turno actual
 function cambiarTurno(){
     turnoHTML = document.getElementById("turnoActualP")
@@ -174,7 +177,7 @@ function checkEmpate(){
         }
     }
     if (contador === 42){
-        document.getElementById("mensajeGanador").textContent = "Tablero completado:"
+        document.getElementById("mensajeGanador").textContent = "Tablero completado"
         document.getElementById("ganador").textContent = "EMPATE"
         document.getElementById("ganador").style.color = "white"
         displayFinal();
@@ -225,7 +228,7 @@ function salir(){
 }
 //función para mostrar pantalla final.
 function finalPartida(){
-    document.getElementById("mensajeGanador").textContent = "Ha ganado:"
+    document.getElementById("mensajeGanador").textContent = "Ha ganado"
     if(turno === "ROJO"){
         document.getElementById("ganador").textContent = nombre2;
         document.getElementById("ganador").style.color = "yellow"

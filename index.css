@@ -93,12 +93,13 @@ body{
         input[type=button]:hover{
             background-color: rgb(36, 36, 228);
             color: white;
+            border: 3px solid white;
         }
 
 
 #containerInicial{
     background-color: rgba(94, 94, 250, 0.80);
-    color: rgb(36, 36, 228);
+    color: white;
     font-size: 2.5vh;
     border: 5px solid rgb(36, 36, 228);
     border-radius: 3%;
@@ -153,7 +154,7 @@ body{
 
 #containerFinalPartida{
     background-color: rgba(94, 94, 250, 0.80);
-    color: rgb(36, 36, 228);
+    color: white;
     font-size: 2.5vh;
     border: 5px solid rgb(36, 36, 228);
     border-radius: 3%;
