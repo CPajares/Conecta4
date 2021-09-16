@@ -208,3 +208,8 @@ body{
     visibility: hidden;
     display:none;
 }
+
+#audio{
+    display: none;
+}
+

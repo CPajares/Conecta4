@@ -16,18 +16,6 @@ let nombre2 = "AMARILLO"
 let indexFila = null
 let indexColumna = null
 
-function checkCasilla(idColumna){ 
-    setIndex(idColumna);
-    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
-            asiganarColor();
-            cambiarTurno();  
-    }
-    checkEmpate();
-    checkLine();
-    checkColumn();
-    checkDiagonal(); 
-}
-
 //Funcion para conocer el index de la celda a modificar al pulsar en la fila.
 
 function setIndex(idColumna){ 
@@ -52,8 +40,15 @@ function setIndex(idColumna){
     }
 }
 
+function checkCasilla(idColumna){ 
+    setIndex(idColumna);
+    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
+        efectoCaida(idColumna);   
+    }
+}
+
 //Función para modificar el color de la casilla
-function asiganarColor(){
+function asignarColor(){
     let casilla = casillero[indexFila][indexColumna];
     let casillaHTML = document.getElementById(casilla)
     if(casillaHTML.style.backgroundColor === ""){ 
@@ -67,6 +62,47 @@ function asiganarColor(){
         }
     }
     casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
+}
+function efectoCaida(idColumna){
+    let contador = 0;
+    let contador2 = 0;
+    let id = setInterval(cambiarCasillas,10);
+    let id2 = setInterval(cambiarCasillas2,18)
+    
+    let color = "red"
+    if(turno === "AMARILLO"){
+        color="yellow"
+    }
+
+    function cambiarCasillas(){
+        if (indexFila>=0){ 
+            let casillaHTML2 = ""
+                casillaHTML2 = casillero[contador][idColumna]
+                document.getElementById(casillaHTML2).style.backgroundColor = color
+            if (contador === indexFila){
+                clearInterval(id)
+            }
+            contador ++  
+        }
+    }
+    function cambiarCasillas2(){
+        if (indexFila>=0){
+            let casillaHTML3 = ""
+                casillaHTML3 = casillero[contador2][idColumna]
+                document.getElementById(casillaHTML3).style.backgroundColor = ""
+            if (contador2 === indexFila){
+                asignarColor();
+                casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
+                cambiarTurno();
+                checkEmpate();
+                checkLine();
+                checkColumn();
+                checkDiagonal(); 
+                clearInterval(id2);
+            }
+            contador2 ++
+        }
+    }
 }
 
 //Función para modificar el elemento turno actual
@@ -97,6 +133,7 @@ function checkLine(){
 
 //Función para comprobar si tenemos 4 en columna
 function checkColumn(){
+    efectoSonido();
     for(let i = 0; i<casillero.length; i++){
         for(let j = 0; j<casillero[i].length;j++){
             if(i === indexFila && j === indexColumna && indexFila<3){
@@ -169,7 +206,7 @@ function reiniciar(){
     ["c29", "c30", "c31", "c32", "c33", "c34", "c35"],
     ["c36", "c37", "c38", "c39", "c40", "c41", "c42"]];
     turno = "ROJO";
-    turnoHTML.textContent = `Comienza ${nombre1}`
+    turnoHTML.textContent = `${nombre1}`
     document.getElementById("turnoActual").style.backgroundColor ="red"
     for(let i = 0; i<casillas.length; i++){
         if(casillas[i].style.backgroundColor==="red" || casillas[i].style.backgroundColor ==="yellow" ){
@@ -178,6 +215,7 @@ function reiniciar(){
         }
     }
 }
+
 //Función para botón salir
 function salir(){
     reiniciar();
@@ -226,7 +264,23 @@ function displayFinal(){
     container.style.display = "none"
 }
 
+//Efecto sonido ficha. No usamos stop, dejo comentado.
 
+function efectoSonido(){
+    sonidoFicha();
+    //setInterval(pararSonido,300)
+}
+
+/*function pararSonido(){
+	let audio = document.getElementById("audio");   
+    audio.pause()
+
+}*/
+
+function sonidoFicha(){
+	let audio = document.getElementById("audio");   
+    audio.play();
+}
 
 
 
