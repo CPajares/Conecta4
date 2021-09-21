@@ -13,19 +13,20 @@ let containerInicial = document.getElementById("containerInicial")
 let containerFinal = document.getElementById("containerFinalPartida")
 let nombre1 = "ROJO"
 let nombre2 = "AMARILLO"
-let indexFila = null
-let indexColumna = null
+let indexFila = null //determinará el array a elegir dentro de casillero -- casillero[indexFila]
+let indexColumna = null // determina el elemento dentro del array -- casillero[indexFila][indexColumna]
 
 
-//Función que se activa al clickar en una columna y recibe el parametro idColumna, diferente según la columna
+///Función que se activa al clickar en una columna (onclick en HTML) y recibe el parametro idColumna, diferente según la columna
 function checkCasilla(idColumna){ 
+    efectoSonido();
     setIndex(idColumna);
     if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
-        efectoCaida(idColumna);   
+        soltarFicha(idColumna);   
     }
 }
 
-//Funcion para conocer el index de la celda a modificar al pulsar en la columna.
+//Funcion para conocer, dado el idColumna, el parametro indexFila correspondiente.
 function setIndex(idColumna){ 
     if(casillero[5][idColumna] !="ROJO" && casillero[5][idColumna] !="AMARILLO"){
         indexFila = 5
@@ -48,8 +49,8 @@ function setIndex(idColumna){
     }
 }
 
-//Esta función simula la caida de la ficha.
-function efectoCaida(idColumna){
+//función que simula visualmente la caida de la ficha e implica cambio de turno.
+function soltarFicha(idColumna){
     let contador = 0;
     let contador2 = 0;
     let id = setInterval(cambiarCasillas,10);
@@ -78,21 +79,20 @@ function efectoCaida(idColumna){
                 casillaHTML3 = casillero[contador2][idColumna]
                 document.getElementById(casillaHTML3).style.backgroundColor = ""
             if (contador2 === indexFila){
-                asignarColor(); //se asigna color a la casilla
-                casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
+                clearInterval(id2);
+                asignarColor(); 
                 cambiarTurno();
                 checkEmpate();
                 checkLine();
                 checkColumn();
                 checkDiagonal(); 
-                clearInterval(id2);
             }
             contador2 ++
         }
     }
 }
 
-//Función para modificar el color de la casilla
+//Función para modificar el color de la casilla. El contenido del casillero es igual al id en HTML, así modificamos el color.
 function asignarColor(){
     let casilla = casillero[indexFila][indexColumna];
     let casillaHTML = document.getElementById(casilla)
@@ -108,7 +108,8 @@ function asignarColor(){
     }
     casillero[indexFila][indexColumna] = turno //Cambiamos array casillero
 }
-//Función para modificar el elemento turno actual
+
+//Función para modificar el elemento turno actual y aplicamos cambios de estilo correspondientes.
 function cambiarTurno(){
     turnoHTML = document.getElementById("turnoActualP")
     if(turno === "ROJO"){
@@ -122,51 +123,7 @@ function cambiarTurno(){
     }    
 }
 
-function checkLine(){
-    for(let i = 0; i<casillero.length; i++){
-        for(let j = 0; j<casillero[i].length;j++){
-            if(i === indexFila){
-                if(casillero[i][j] === casillero[i][j+1] && casillero[i][j+1] === casillero[i][j+2] && casillero[i][j+2] === casillero[i][j+3]){
-                    finalPartida();
-                }
-            }
-        }
-    }
-}
-
-//Función para comprobar si tenemos 4 en columna
-function checkColumn(){
-    efectoSonido();
-    for(let i = 0; i<casillero.length; i++){
-        for(let j = 0; j<casillero[i].length;j++){
-            if(i === indexFila && j === indexColumna && indexFila<3){
-                if(casillero[i][j] === casillero[i+1][j] && casillero[i+1][j] === casillero[i+2][j] && casillero[i+2][j] === casillero[i+3][j]){
-                    finalPartida();
-                } 
-            }
-        }
-    }
-}
-
-//Función para chequear 4 iguales en diagonal.
-function checkDiagonal(){
-    for(let i = 0; i<casillero.length; i++){
-        for(let j = 0; j<casillero[i].length;j++){
-            //Para diagonal a la derecha /
-            if(i!=5 && i!= 4 && i!=3 && j!=0 && j!=1 && j!=2){
-                if(casillero[i][j] === casillero[i+1][j-1] && casillero[i+1][j-1] === casillero[i+2][j-2] && casillero[i+2][j-2] === casillero[i+3][j-3]){
-                    finalPartida();
-                }
-            //Para diagonal a la izquierda \
-            } else if(i!=0 && i!= 1 && i!=2 && j!=0 && j!=1 && j!=2){
-                if(casillero[i][j] === casillero[i-1][j-1] && casillero[i-1][j-1] === casillero[i-2][j-2] && casillero[i-2][j-2] === casillero[i-3][j-3]){
-                    finalPartida();
-                }  
-            }
-        }
-    }
-}
-
+//Comprueba si el tablero está lleno, en este caso abre displayFinal con los estilos correspondientes.
 function checkEmpate(){
     let contador = 0;
     for (let i = 0; i<casillero.length; i++){
@@ -183,7 +140,67 @@ function checkEmpate(){
         displayFinal();
     }
 }
-//Para botón Jugar. Guardar nombres
+
+//Recorremos el casillero en base a la fila de la ficha introducida (indexFila) y comprobamos si hay 4 coincidencias en horizontal.
+function checkLine(){
+    for(let i = 0; i<casillero.length; i++){
+        for(let j = 0; j<casillero[i].length;j++){
+            if(i === indexFila){
+                if(casillero[i][j] === casillero[i][j+1] && casillero[i][j+1] === casillero[i][j+2] && casillero[i][j+2] === casillero[i][j+3]){
+                    finalPartida();
+                }
+            }
+        }
+    }
+}
+
+//Recorremos el casillero en base a la columna y la fila de la ficha introducida y comprobamos si hay 4 coincidencias en vertical.
+function checkColumn(){
+    for(let i = 0; i<casillero.length; i++){
+        for(let j = 0; j<casillero[i].length;j++){
+            if(i === indexFila && j === indexColumna && indexFila<3){
+                if(casillero[i][j] === casillero[i+1][j] && casillero[i+1][j] === casillero[i+2][j] && casillero[i+2][j] === casillero[i+3][j]){
+                    finalPartida();
+                } 
+            }
+        }
+    }
+}
+
+//Para chequear en diagonal solo hacemos comprobacion de parte del casillero en cada direccion.
+function checkDiagonal(){
+    for(let i = 0; i<casillero.length; i++){
+        for(let j = 0; j<casillero[i].length;j++){
+            //Para diagonal a la derecha (/)solo chequeamos la parte superior derecha del casillero
+            if(i!=5 && i!= 4 && i!=3 && j!=0 && j!=1 && j!=2){
+                if(casillero[i][j] === casillero[i+1][j-1] && casillero[i+1][j-1] === casillero[i+2][j-2] && casillero[i+2][j-2] === casillero[i+3][j-3]){
+                    finalPartida();
+                }
+            //Para diagonal a la izquierda (\) solo chequeamos la parte inferior derecha del casillero
+            } else if(i!=0 && i!= 1 && i!=2 && j!=0 && j!=1 && j!=2){
+                if(casillero[i][j] === casillero[i-1][j-1] && casillero[i-1][j-1] === casillero[i-2][j-2] && casillero[i-2][j-2] === casillero[i-3][j-3]){
+                    finalPartida();
+                }  
+            }
+        }
+    }
+}
+
+//función para mostrar pantalla final con los estilos correspondientes
+function finalPartida(){
+    document.getElementById("mensajeGanador").textContent = "Ha ganado"
+    if(turno === "ROJO"){
+        document.getElementById("ganador").textContent = nombre2;
+        document.getElementById("ganador").style.color = "yellow"
+
+    } else if (turno === "AMARILLO"){
+        document.getElementById("ganador").textContent = nombre1;
+        document.getElementById("ganador").style.color = "red"
+    }       
+    displayFinal();
+}
+
+//onclick en botón jugar en HTML. Guarda nombres, aplica estilos + displayTablero
 function jugar(){
     if(document.getElementById("textRojo").value.length >0){
         nombre1 = document.getElementById("textRojo").value
@@ -197,7 +214,7 @@ function jugar(){
     displayTablero();
 }
 
-//función para reiniciar.
+//función para reiniciar valores. onclick en HTML
 function reiniciar(){
     turnoHTML = document.getElementById("turnoActualP")
     let casillas = document.getElementsByClassName("casilla")
@@ -219,25 +236,12 @@ function reiniciar(){
     }
 }
 
-//Función para botón salir
+//Función para botón salir onclick en HTML. Reinicia y nos muestra pantalla inicial
 function salir(){
     nombre1 = "ROJO"
     nombre2 = "AMARILLO"
     reiniciar();
     displayInicial();
-}
-//función para mostrar pantalla final.
-function finalPartida(){
-    document.getElementById("mensajeGanador").textContent = "Ha ganado"
-    if(turno === "ROJO"){
-        document.getElementById("ganador").textContent = nombre2;
-        document.getElementById("ganador").style.color = "yellow"
-
-    } else if (turno === "AMARILLO"){
-        document.getElementById("ganador").textContent = nombre1;
-        document.getElementById("ganador").style.color = "red"
-    }       
-    displayFinal();
 }
 
 //funciones para mostrar las diferentes pantallas:
@@ -269,25 +273,9 @@ function displayFinal(){
     container.style.display = "none"
 }
 
-//Efecto sonido ficha. No usamos stop, dejo comentado.
+//Efecto sonido ficha.
 
 function efectoSonido(){
-    sonidoFicha();
-    //setInterval(pararSonido,300)
-}
-
-/*function pararSonido(){
-	let audio = document.getElementById("audio");   
-    audio.pause()
-
-}*/
-
-function sonidoFicha(){
-	let audio = document.getElementById("audio");   
+    let audio = document.getElementById("audio");   
     audio.play();
 }
-
-
-
-
-
