@@ -20,10 +20,8 @@ let indexColumna = null // determina el elemento dentro del array -- casillero[i
 ///Función que se activa al clickar en una columna (onclick en HTML) y recibe el parametro idColumna, diferente según la columna
 function checkCasilla(idColumna){ 
     efectoSonido();
-    setIndex(idColumna);
-    if(casillero[indexFila][indexColumna] != "ROJO" && casillero[indexFila][indexColumna] != "AMARILLO"){   
-        soltarFicha(idColumna);   
-    }
+    setIndex(idColumna); 
+    soltarFicha(idColumna);   
 }
 
 //Funcion para conocer, dado el idColumna, el parametro indexFila correspondiente.
@@ -92,7 +90,7 @@ function soltarFicha(idColumna){
     }
 }
 
-//Función para modificar el color de la casilla. El contenido del casillero es igual al id en HTML, así modificamos el color.
+//Función para modificar el color de la casilla. El contenido del casillero es igual al id en HTML, así modificamos el color. + modificar array casillero
 function asignarColor(){
     let casilla = casillero[indexFila][indexColumna];
     let casillaHTML = document.getElementById(casilla)
