@@ -13,10 +13,22 @@
     <audio id="audio" controls>
         <source type="audio/mp3" src="sonidoFicha.mp3">
     </audio>
-    <!--div containerInicial, se muestra al principio. Meter nombres + botón jugar-->
+    
+    <!--div containerInicial, se muestra al principio. Elegir modo de juego, meter nombres + botón jugar-->
     <div id="containerInicial">
         <div><h1 id="Conecta4">- Conecta4 -</h1></div>
-        <div><h2>Nombre de los Jugadores:</h2></div>
+        <div>Seleciona el modo de juego:</div>
+        <form name="formulario">
+            <input type="radio" name="numeroJugadores" onchange="isSecondPlayer()";value="jugador" checked>
+            <label for="jugador" >Dos Jugadores</label><br>
+            <input id="radioCPU" type="radio" name="numeroJugadores" onchange="isSecondPlayer()" value="CPUF">
+            <label for="CPU" >CPU fácil</label><br>
+            <input id="radioCPUMedio" type="radio" name="numeroJugadores" onchange="isSecondPlayer()" value="CPUM">
+            <label for="CPU" >CPU medio</label><br>
+            <input id="radioCPUDificil" type="radio" name="numeroJugadores" onchange="isSecondPlayer()" value="CPUD">
+            <label for="CPU" >CPU difícil</label><br>
+        </form>
+        <div><h4>Nombre de los Jugadores:</h4></div>
         <div id="nombres">
             <div id="nombreRojo">
                 <div class="nombreJugador"><h4>Jugador Rojo:</h4></div> 
@@ -27,7 +39,7 @@
                 <div><input type="text" id="textAmarillo" placeholder="Amarillo" autocomplete="off"></div>
             </div>
         </div>
-        <div><input type="button" value="JUGAR" id="botonJugar"class="boton" onclick="jugar()"></div>
+        <div><input type="button" value="JUGAR" id="botonJugar"class="boton" onclick="iniciarJuego()"></div>
     </div>
 
     <!--div containerFinalPartida display none, para mostrar cuando haya un ganador-->
@@ -106,12 +118,14 @@
             <div id="turnoActual"><p id="turnoActualP">ROJO</p></div>
             <input type="button" id="reiniciar" class= "botonera"value="Reiniciar" onclick="reiniciar()">
             <input type="button" id="salir" class= "botonera" value="Salir" onclick="salir()">
+            <!--Audio + div con display none, se activa al conectar 4-->
+            <div id="linea" style="display: none;">4 CONECTADAS!</div>
+            <audio id="audioVictoria" style="display: none;" controls>
+                <source type="audio/mp3" src="sonidoVictoria.mp3">
+            </audio>
         </div>
     </div>
-    <!--Audio con display none, se activa al caer ficha-->
-    <audio id="audio" controls>
-        <source type="audio/mp3" src="sonidoFicha.mp3">
-    </audio>
+    
 </body>
 </html>
 <script src="index.js"></script>

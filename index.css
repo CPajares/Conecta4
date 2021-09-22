@@ -1,6 +1,5 @@
 
 body{
-    margin: 10px;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -9,6 +8,7 @@ body{
     background: url("fondoBurbujas.jpg") no-repeat center fixed;
     background-size:cover;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
     }
 
 
@@ -74,7 +74,7 @@ body{
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;     
+            padding: 10px;    
         }
 
         .botonera{
@@ -95,6 +95,17 @@ body{
             color: white;
             border: 3px solid white;
         }
+        #linea{
+            background-color: red;
+            color: rgba(255, 255, 255, 0.884);
+            border:3px solid rgb(36, 36, 228);
+            width: 80%;
+            text-align: center;
+            padding: 5px;
+            font-size: 4vh;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        
+        }
 
 
 #containerInicial{
@@ -108,9 +119,9 @@ body{
     align-items: center;
     padding: 15px;
     width: 60vh;
-    height: 60vh;
-    justify-content:space-evenly;
-    margin-top: 7%;
+    height: 70vh;
+    justify-content:stretch;
+    margin-top: 4%;
 }
 
     #nombreRojo{
@@ -150,6 +161,7 @@ body{
 
     #botonJugar{
         width: 20vh;
+        margin-top: 10%;
     }
 
 #containerFinalPartida{
