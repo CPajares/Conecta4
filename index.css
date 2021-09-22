@@ -227,3 +227,20 @@ body{
     display: none;
 }
 
+@media only screen and (max-width: 600px) {
+    
+    #tablero{
+        width: 350px;
+    }
+    .casilla{
+        border: 3px solid black;
+        border-radius: 50%;
+        width: 4.2vh;
+        height: 4.2vh;
+        margin: 5px;
+        background-color:transparent;
+        box-shadow: 5px 5px 5px 2px black;
+    }
+  }
+
+  
