@@ -13,7 +13,6 @@ body{
 
 
 #container{
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly; 
@@ -170,7 +169,6 @@ body{
     font-size: 2.5vh;
     border: 5px solid rgb(36, 36, 228);
     border-radius: 3%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
@@ -211,7 +209,6 @@ body{
     color: white;
     font-size: 2.7vh;
     border: 5px solid black;
-    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
